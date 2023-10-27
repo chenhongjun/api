@@ -5,7 +5,7 @@ import (
 	"log"
 	"net"
 
-	pb "github.com/chenhongjun/api/chippergrpc2"
+	pb "github.com/chenhongjun/api/print_service/pkg/chippergrpc2"
 
 	"google.golang.org/grpc"
 )
@@ -18,7 +18,7 @@ func (s *Server) Run(grpcPort int16) {
 
 	// 初始化grpc服务
 	g := grpc.NewServer()
-	pb.RegisterDisklessServiceServer(g, s)
+	pb.RegisterChipperGrpcServer(g, s)
 
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", grpcPort))
 	if err != nil {
